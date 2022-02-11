@@ -22,9 +22,8 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function playerSelection() {
-    let input = prompt("What's your choice?");
-    input = input.toUpperCase();
+function playerSelection(evt) {
+    input = evt.currentTarget.myParam;
     if (input == "ROCK" || input == "PAPER" || input == "SCISSORS") {
         return input;
     } else {
@@ -51,5 +50,12 @@ function playGame(numRounds) {
     else console.log("The game ended in a tie");
 }
 
-///playGame(5);
-playGame(5);
+const paper = document.getElementById("paper");
+paper.myParam = 'PAPER';
+const scissors = document.getElementById("scissors")
+scissors.myParam = 'SCISSORS';
+const rock = document.getElementById("rock");
+rock.myParam = 'ROCK';
+paper.addEventListener("click",playerSelection);
+
+playGame(1);
