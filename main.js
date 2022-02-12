@@ -1,5 +1,16 @@
 const options = ["rock", "paper", "scissors"];
 
+function sendMessage(text) {
+    const messageBubble = document.createElement("div");
+    messageBubble.classList.add("bubble-container");
+    const message = document.createElement("div");
+    message.classList.add("box2", "sb2");
+    message.innerText = text;
+    messageBubble.appendChild(message);
+    const chatContainer = document.getElementsByClassName("message-container");
+    chatContainer[0].appendChild(messageBubble);
+}
+
 function computerPlay() {
     return options[Math.floor(Math.random() * 3)].toUpperCase();
 }
@@ -22,8 +33,8 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function playerSelection(evt) {
-    input = evt.currentTarget.myParam;
+function playerSelection(input) {
+    input = getPlayerInput();
     if (input == "ROCK" || input == "PAPER" || input == "SCISSORS") {
         return input;
     } else {
@@ -37,7 +48,7 @@ function playGame(numRounds) {
     let computerPoints = 0;
     for (let index = 0; index < numRounds; index++) {
         result = playRound(playerSelection(), computerPlay());
-        console.log(result);
+        sendMessage(result);
         if (result === "The computer won this round") {
             ++computerPoints;
         } else if (result === "The player won this round") {
@@ -50,12 +61,17 @@ function playGame(numRounds) {
     else console.log("The game ended in a tie");
 }
 
-const paper = document.getElementById("paper");
-paper.myParam = 'PAPER';
-const scissors = document.getElementById("scissors")
-scissors.myParam = 'SCISSORS';
-const rock = document.getElementById("rock");
-rock.myParam = 'ROCK';
-paper.addEventListener("click",playerSelection);
+playGame(5);
 
-playGame(1);
+function getPlayerInput() {
+    const buttons = document.querySelectorAll(".button-container > button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", (evt) => {
+            let choice = evt.target.id;
+            choice = choice.toUpperCase();
+
+            console.log(choice);
+            return choice;
+        });
+    });
+}

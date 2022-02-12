@@ -146,6 +146,8 @@ body {
 .box2 {
     width: 180px;
     margin-left: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background: rgb(217, 253, 211);
     padding: 8px 12px;
     text-align: left;
