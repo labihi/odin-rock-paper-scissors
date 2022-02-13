@@ -73,7 +73,7 @@ function playGame() {
             }
             roundNum++;
     } else {
-            sendMessageLeft(`Tie for round #${roundNum}: ${playerSelection} and ${computerSelection}. No points.`);
+            sendMessageLeft(`Tie for round #${roundNum}`);
             roundNum++;
 
     }
