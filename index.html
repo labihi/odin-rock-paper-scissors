@@ -4,11 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="main.js" defer></script>
     <title>Rock Paper Scissors</title>
     
 </head>
 <body>
+    <div class="header-bar">
+        <p>BotsApp Web</p>
+        <a href="https://github.com/labihi/odin-rock-paper-scissors">
+            <img src="./assets/GitHub-Mark-Light-64px.png">
+        </a>
+    </div>
+    <div class="container">
+        <div class="header">
+            <span class="material-icons">arrow_back</span>
+            <div class="propic"></div>
+            <p>Rock Paper Scissors</p>
+            <div class="icon-container">
+                <span class="material-icons">videocam</span>
+                <span class="material-icons" style="font-size: 20px;">call</span>
+                <span class="material-icons">more_vert</span>
+            </div>
+        </div>
+        <div class="chat-container">
+            <div class="message-container">
+                <div class="bubble-container">
+                    <div class="box1 sb1">
+                        Click a button to choose
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="button-container">
+            <button id="paper">✋</button>
+            <button id="scissors">✌️</button>
+            <button id="rock">✊</button>
+        </div>
+        <div class="input-container">
+            <div class="input-bar">
+                <span class="material-icons" style="font-size: 22px;">insert_emoticons</span>
+                <div class="right-icon-container">
+                    <span class="material-icons" style="font-size: 22px; transform: rotate(225deg); ">attachment</span>
+                    <span class="material-icons" style="font-size: 22px;">photo_camera</span>
+                </div>
+            </div>
+            <div class="fake-fab">
+                <span class="material-icons">mic</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Made with ❤️ By Lorenzo "labihi" Garibaldi</p>
+        <p>Thanks to The Odin Project!</p>
+    </div>
 </body>
 </html>

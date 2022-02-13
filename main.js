@@ -1,55 +1,84 @@
 const options = ["rock", "paper", "scissors"];
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
+
+let computerScore = 0;
+let playerScore = 0;
+let roundNum = 1;
+
+
+function sendMessageRight(text) {
+    const messageBubble = document.createElement("div");
+    messageBubble.classList.add("bubble-container");
+    const message = document.createElement("div");
+    message.classList.add("box2", "sb2");
+    message.innerText = text;
+    messageBubble.appendChild(message);
+    const chatContainer = document.getElementsByClassName("chat-container");
+    chatContainer[0].appendChild(messageBubble);
+    chatContainer[0].scrollTop = chatContainer[0].scrollHeight;
+}
+
+function sendMessageLeft(text) {
+    const messageBubble = document.createElement("div");
+    messageBubble.classList.add("bubble-container");
+    const message = document.createElement("div");
+    message.classList.add("box1", "sb1");
+    message.innerText = text;
+    messageBubble.appendChild(message);
+    const chatContainer = document.getElementsByClassName("chat-container");
+    chatContainer[0].appendChild(messageBubble);
+    chatContainer[0].scrollTop = chatContainer[0].scrollHeight;
+}
 
 function computerPlay() {
-    return options[Math.floor(Math.random() * 3)].toUpperCase();
+    return options[Math.floor(Math.random() * 3)];
 }
 
-function playRound(playerSelection, computerSelection) {
+function playGame() {
+    let playerSelection = this.id;
+    console.log(playerSelection);
+    let computerSelection = computerPlay();
     if (
-        (computerSelection == "ROCK" && playerSelection == "SCISSORS") ||
-        (computerSelection == "PAPER" && playerSelection == "ROCK") ||
-        (computerSelection == "SCISSORS" && playerSelection == "PAPER")
+            (playerSelection === 'rock' && computerSelection === 'scissors') ||
+            (playerSelection === 'paper' && computerSelection === 'rock') ||
+            (playerSelection === 'scissors' &&
+                    computerSelection === 'paper' &&
+                    (computerScore <= 5 || playerScore <= 5))
     ) {
-        return "The computer won this round";
+            playerScore++; // New Score
+            sendMessageRight(`You won round #${roundNum}. \nScore: ${playerScore} - ${computerScore}.`);
+            if (playerScore >= 5) {
+                    sendMessageRight(`YOU WON!\nYou got 5 points!`);
+                    rockButton.removeEventListener('click', playGame);
+                    paperButton.removeEventListener('click', playGame);
+                    scissorsButton.removeEventListener('click', playGame);
+            }
+            roundNum++;
     } else if (
-        (computerSelection == "ROCK" && playerSelection == "PAPER") ||
-        (computerSelection == "PAPER" && playerSelection == "SCISSORS") ||
-        (computerSelection == "SCISSORS" && playerSelection == "ROCK")
+            (playerSelection === 'rock' && computerSelection === 'paper') ||
+            (playerSelection === 'paper' && computerSelection === 'scissors') ||
+            (playerSelection === 'scissors' &&
+                    computerSelection === 'rock' &&
+                    (computerScore <= 5 || playerScore <= 5))
     ) {
-        return "The player won this round";
+            computerScore++; // Computer Score
+            sendMessageLeft(`Computer won round #${roundNum}. \nScore: ${playerScore} - ${computerScore}.`);
+            if (computerScore >= 5) {
+                    sendMessageLeft(`YOU LOST!\nComputer got 5 points!`);
+                    rockButton.removeEventListener('click', playGame);
+                    paperButton.removeEventListener('click', playGame);
+                    scissorsButton.removeEventListener('click', playGame);
+            }
+            roundNum++;
     } else {
-        return "This round ended in a tie";
+            sendMessageLeft(`Tie for round #${roundNum}: ${playerSelection} and ${computerSelection}. No points.`);
+            roundNum++;
+
     }
 }
 
-function playerSelection() {
-    let input = prompt("What's your choice?");
-    input = input.toUpperCase();
-    if (input == "ROCK" || input == "PAPER" || input == "SCISSORS") {
-        return input;
-    } else {
-        return console.error("Input non corretto");
-    }
-}
-
-function playGame(numRounds) {
-    let result;
-    let playerPoints = 0;
-    let computerPoints = 0;
-    for (let index = 0; index < numRounds; index++) {
-        result = playRound(playerSelection(), computerPlay());
-        console.log(result);
-        if (result === "The computer won this round") {
-            ++computerPoints;
-        } else if (result === "The player won this round") {
-            ++playerPoints;
-        }
-    }
-    if (playerPoints > computerPoints) console.log("The player won the game");
-    else if (computerPoints > playerPoints)
-        console.log("The computer won the game");
-    else console.log("The game ended in a tie");
-}
-
-///playGame(5);
-playGame(5);
+rockButton.addEventListener("click",playGame);
+paperButton.addEventListener("click",playGame);
+scissorsButton.addEventListener("click",playGame);
