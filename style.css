@@ -4,12 +4,50 @@
     padding: 0px;
 }
 
-
-body {
+body{
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap:50px
 }
+
+.header-bar{
+    display: flex;
+    height: 50px;
+    align-items: center;
+    background-color: rgb(0, 128, 105);
+    width: 100%;
+    justify-content: space-between;
+}
+
+.header-bar>p{
+    padding-left: 20px;
+    font-size: x-large;
+    font-family: sans-serif;
+    color: white;
+}
+
+.header-bar>a>img{
+    height: 32px;
+    width: 32px;
+    padding-right: 20px;
+}
+
+.footer{
+    position: fixed; 
+    bottom: 0;
+    background-color: #F0F2F5;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    padding: 10px;
+}
+
 
 .container {
     display: flex;
@@ -114,7 +152,18 @@ body {
     padding: 10px 2px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.chat-container::-webkit-scrollbar {
+    display: none;
+}
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+.chat-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 
@@ -174,11 +223,13 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-bottom: 5px;
 }
 
 .button-container>button{
     font-size: xx-large;
     border-radius: 10px;
     border: none;
+    padding: 3px 8px;
     background-color: white;
 }
